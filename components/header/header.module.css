@@ -1,0 +1,15 @@
+.header {
+  padding: 33px 0;
+}
+.subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.analyze {
+  background-color: var(--black);
+  padding: 20px 40px;
+  color: var(--white);
+  font-size: 16px;
+  border-radius: 8px;
+}
