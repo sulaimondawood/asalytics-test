@@ -1,6 +1,7 @@
 export interface IResult {
   assetId: string;
   available: boolean;
-  logo: string | null;
+  logo: string | undefined;
   name: string;
+  asa: [];
 }

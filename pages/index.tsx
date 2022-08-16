@@ -12,8 +12,8 @@ const client = new ApolloClient({
   uri: "https://analytics-api.herokuapp.com/analytics",
 });
 
-const Home: NextPage<IResult[]> = ({ asa }) => {
-  console.log(asa);
+const Home: NextPage<IResult> = ({ asa }) => {
+  // console.log(asa);
 
   return (
     <div>
@@ -29,20 +29,25 @@ const Home: NextPage<IResult[]> = ({ asa }) => {
           List of Algorand Standard Assets on ASAlytics
         </h1>
         <div className={styles.data}>
-          {asa.map((data: IResult) => {
-            const { assetId, available, logo, name } = data;
-            return (
-              <div key={assetId} className={styles.item}>
-                <img className={styles.logo} src={logo} alt="" />
-                <p>{name}</p>
-                <p
-                  className={available ? styles.available : styles.unavailable}
-                >
-                  {available ? "available" : "Unavailable"}
-                </p>
-              </div>
-            );
-          })}
+          {asa.length > 0 &&
+            asa !== null &&
+            typeof asa !== undefined &&
+            asa?.map((data: IResult) => {
+              const { assetId, available, logo, name } = data;
+              return (
+                <div key={assetId} className={styles.item}>
+                  <img className={styles.logo} src={logo} alt="" />
+                  <p className={styles.name}>{name}</p>
+                  <p
+                    className={
+                      available ? styles.available : styles.unavailable
+                    }
+                  >
+                    {available ? "available" : "Unavailable"}
+                  </p>
+                </div>
+              );
+            })}
         </div>
       </div>
       {/* <h1>Dawood</h1> */}
@@ -57,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
     query: gql`
       query MyQuery {
         asalist {
-          results {
+          result {
             assetId
             available
             logo
@@ -69,7 +74,7 @@ export const getStaticProps: GetStaticProps = async () => {
   });
   return {
     props: {
-      asa: data.asalist.results,
+      asa: data.asalist.result,
     },
   };
 };
