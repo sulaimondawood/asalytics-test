@@ -1,6 +1,7 @@
 .header {
   padding: 33px 0;
 }
+
 .subheader {
   display: flex;
   align-items: center;
@@ -12,4 +13,11 @@
   color: var(--white);
   font-size: 16px;
   border-radius: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .analyze {
+    padding: 10px;
+    font-size: 10px;
+  }
 }
